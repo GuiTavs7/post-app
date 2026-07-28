@@ -1,0 +1,13 @@
+<h1>Lista de Posts</h1>
+
+<!-- Estrutura each do handlebars para percorrer a lista de posts e exibir cada um deles -->
+
+{{#each posts}}
+  <div>
+    <small>{{createdAt}}</small>
+    <h2>{{titulo}}</h2>
+    <p>{{conteudo}}</p>
+    <a href="/deletar/{{id}}" class="btn btn-danger"><button>Deletar</button></a>
+    <hr>
+  </div>
+{{/each}}
