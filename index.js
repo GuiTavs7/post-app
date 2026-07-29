@@ -52,6 +52,8 @@ const Post = require('./models/Post.js'); // importando o modelo Post para ser u
       });
     });
 
-app.listen(8081, () => {
-    console.log('Servidor rodando na porta http://localhost:8081');
+const PORT = process.env.PORT || 8081;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
