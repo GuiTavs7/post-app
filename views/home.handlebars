@@ -1,13 +1,35 @@
-<h1>Lista de Posts</h1>
+<h1>📝 Lista de Posts</h1>
 
-<!-- Estrutura each do handlebars para percorrer a lista de posts e exibir cada um deles -->
+<a href="/cad" class="btn">
+    + Nova postagem
+</a>
+
+<!-- Estrutura de repetição para exibir os posts cadastrados no banco de dados -->
 
 {{#each posts}}
-  <div>
-    <small>{{createdAt}}</small>
+
+<div class="card">
+
+    <small>
+        Publicado em: {{createdAt}}
+    </small>
+
     <h2>{{titulo}}</h2>
+
     <p>{{conteudo}}</p>
-    <a href="/deletar/{{id}}" class="btn btn-danger"><button>Deletar</button></a>
-    <hr>
-  </div>
+
+    <img src="/uploads/{{imagem}}" alt="Imagem do post" class="post-image">
+
+    <a href="/deletar/{{id}}" class="btn delete">
+        Deletar
+    </a>
+
+</div>
+
+{{else}}
+
+<p class="sem-post">
+    Ainda não existem postagens cadastradas.
+</p>
+
 {{/each}}

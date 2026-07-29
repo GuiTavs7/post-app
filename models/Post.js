@@ -6,6 +6,9 @@ const Post = database.sequelize.define('postagens', { // define = define a tabel
   },
   conteudo: {
     type: database.Sequelize.TEXT // TEXT = tipo de dado do campo
+  },
+  imagem: {
+    type: database.Sequelize.STRING // STRING = tipo de dado do campo
   }
 });
 
@@ -15,7 +18,7 @@ module.exports = Post; // exportando o modelo Post para ser usado em outros arqu
  
 // sync = sincroniza o modelo com o banco de dados | force = força a criação da tabela, mesmo que ela já exista
 
-Post.sync()
+Post.sync({ alter: true })
   .then(() => {
     console.log("Tabela sincronizada!");
   })

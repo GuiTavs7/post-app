@@ -1,8 +1,13 @@
-<form action="/add" method="POST">
+<form action="/add" method="POST" enctype="multipart/form-data">
     <p>Título:</p>
     <input type="text" name="titulo">
+
     <p>Conteúdo:</p>
     <textarea name="conteudo"></textarea>
+
+    <p>Imagem:</p>
+    <input type="file" name="imagem">
+    
     <button type="submit">Cadastrar postagem</button>
 </form>
 
