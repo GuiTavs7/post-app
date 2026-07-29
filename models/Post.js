@@ -14,3 +14,11 @@ module.exports = Post; // exportando o modelo Post para ser usado em outros arqu
 // Post.sync({ force: true }); 
  
 // sync = sincroniza o modelo com o banco de dados | force = força a criação da tabela, mesmo que ela já exista
+
+Post.sync()
+  .then(() => {
+    console.log("Tabela sincronizada!");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
