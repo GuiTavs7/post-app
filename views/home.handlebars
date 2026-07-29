@@ -1,35 +1,46 @@
-<h1>📝 Lista de Posts</h1>
+<div class="page-shell">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">Blog pessoal</p>
+            <h1>📝 Lista de Posts</h1>
+            <p class="page-subtitle">Organize suas ideias com uma interface mais elegante e profissional.</p>
+        </div>
 
-<a href="/cad" class="btn">
-    + Nova postagem
-</a>
+        <a href="/cad" class="btn btn-primary">
+            + Nova postagem
+        </a>
+    </header>
 
-<!-- Estrutura de repetição para exibir os posts cadastrados no banco de dados -->
+    <!-- Estrutura de repetição para exibir os posts cadastrados no banco de dados -->
 
-{{#each posts}}
+    {{#each posts}}
 
-<div class="card">
+    <article class="card">
+        <div class="card-top">
+            <span class="post-date">Publicado em: {{createdAt}}</span>
+            <span class="post-badge">Publicação</span>
+        </div>
 
-    <small>
-        Publicado em: {{createdAt}}
-    </small>
+        <h2>{{titulo}}</h2>
 
-    <h2>{{titulo}}</h2>
+        <p>{{conteudo}}</p>
 
-    <p>{{conteudo}}</p>
+        <img src="/uploads/{{imagem}}" alt="Imagem do post" class="post-image">
 
-    <img src="/uploads/{{imagem}}" alt="Imagem do post" class="post-image">
+        <div class="card-actions">
+            <a href="/deletar/{{id}}" class="btn btn-danger">
+                Deletar
+            </a>
+        </div>
+    </article>
 
-    <a href="/deletar/{{id}}" class="btn delete">
-        Deletar
-    </a>
+    {{else}}
 
+    <div class="empty-state">
+        <h2>Nenhuma postagem ainda</h2>
+        <p>Ainda não existem postagens cadastradas. Crie a primeira para começar.</p>
+        <a href="/cad" class="btn btn-primary">Criar primeira postagem</a>
+    </div>
+
+    {{/each}}
 </div>
-
-{{else}}
-
-<p class="sem-post">
-    Ainda não existem postagens cadastradas.
-</p>
-
-{{/each}}
