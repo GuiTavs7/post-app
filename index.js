@@ -27,14 +27,14 @@ const path = require('path');
 
     // Multer
 
-    const storage = multer.diskStorage({
-      destination: function (req, file, cb) {
-        cb(null, 'public/uploads/'); // define o diretório de destino para os arquivos enviados
-      },
-      filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname); // define o nome do arquivo enviado
-      }
+    const {cloudinaryStorage} = require("multer-storage-cloudinary");
+    const cloudinary = require("./config/cloudinary");
+    const storage = new cloudinaryStorage({
+      cloudinary: cloudinary,
+      folder: 'post-app',
+      allowedFormats: ['jpg', 'png', 'gif']
     });
+  
     const upload = multer({ storage: storage });
 
   // Rotas
@@ -50,16 +50,17 @@ const path = require('path');
       res.render('formulario.handlebars');
     });
 
-    app.post('/add', upload.single('imagem'), (req, res) => {
-      Post.create({
-        titulo: req.body.titulo,
-        conteudo: req.body.conteudo,
-        imagem: req.file ? req.file.filename : null // verifica se um arquivo foi enviado e salva o nome do arquivo, caso contrário, salva null
-      }).then(() => {
-        res.redirect('/'); // redireciona para a página inicial após criar a postagem
-      }).catch((erro) => {
+    app.post('/add', upload.single('imagem'), async (req, res) => {
+      try {
+        await Post.create({
+          titulo: req.body.titulo,
+          conteudo: req.body.conteudo,
+          imagem: req.file.path // Salva o caminho da imagem no banco de dados
+        });
+        res.redirect('/');
+      } catch (erro) {
         res.send('Houve um erro: ' + erro);
-      });
+      }
     });
 
     app.get('/deletar/:id', (req, res) => {

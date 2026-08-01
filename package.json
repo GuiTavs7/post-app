@@ -1,10 +1,12 @@
 {
   "dependencies": {
     "body-parser": "^2.3.0",
+    "cloudinary": "^1.41.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-handlebars": "^8.0.7",
     "multer": "^2.2.0",
+    "multer-storage-cloudinary": "^4.0.0",
     "mysql2": "^3.22.6",
     "nodemon": "^3.1.14",
     "sequelize": "^6.37.8"
