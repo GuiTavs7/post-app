@@ -27,9 +27,9 @@ const path = require('path');
 
     // Multer
 
-    const {cloudinaryStorage} = require("multer-storage-cloudinary");
+    const {CloudinaryStorageloudinaryStorage} = require("multer-storage-cloudinary");
     const cloudinary = require("./config/cloudinary");
-    const storage = new cloudinaryStorage({
+    const storage = new CloudinaryStorage({
       cloudinary: cloudinary,
       folder: 'post-app',
       allowedFormats: ['jpg', 'png', 'gif']
