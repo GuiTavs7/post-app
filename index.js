@@ -38,9 +38,9 @@ const path = require('path');
     const upload = multer({ storage: storage });
 
   // Rotas
-    app.get('/', (req, res) => {
+    app.get('/', async (req, res) => {
       try{
-        const posts = Post.findAll({
+        const posts = await Post.findAll({
           order: [['createdAt', 'DESC']]
         });
 
