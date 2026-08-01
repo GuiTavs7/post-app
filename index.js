@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const handlebars = require('express-handlebars');
-const bodyParser = require('body-parser');
 const Post = require('./models/Post.js'); // importando o modelo Post para ser usado no backend
 const multer = require('multer');
 const path = require('path');
@@ -18,8 +17,8 @@ const path = require('path');
     app.set('view engine', 'handlebars');
 
   // Body Parser
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(bodyParser.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
 
     app.use(express.static(path.join(__dirname, 'public'))); // define a pasta public como estática para servir arquivos estáticos
 
