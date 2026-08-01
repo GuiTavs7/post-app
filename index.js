@@ -40,7 +40,7 @@ const path = require('path');
   // Rotas
     app.get('/', (req, res) => {
       try{
-        const posts = await Post.findAll({
+        const posts = Post.findAll({
           order: [['createdAt', 'DESC']]
         });
 
