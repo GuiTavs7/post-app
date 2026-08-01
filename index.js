@@ -39,10 +39,29 @@ const path = require('path');
 
   // Rotas
     app.get('/', (req, res) => {
-      Post.findAll({order: [['createdAt', 'DESC']]}).then((posts) => {
-        console.log(posts);
-        res.render('home.handlebars', { posts: posts });
-      })
+      try{
+        const posts = await Post.findAll({
+          order: [['createdAt', 'DESC']]
+        });
+
+        const postsFormatados = posts.map(post => ({
+          ...post.toJSON(),
+          dataFormatada: new Intl.DateTimeFormat('pt-BR', {
+            weekday: 'long',
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZone: 'America/Sao_Paulo'
+          }).format(post.createdAt)
+        }));
+
+        res.render('home.handlebars', { posts: postsFormatados });
+      
+      } catch (erro) {
+        res.send('Houve um erro: ' + erro);
+      }
     });
 
     app.get('/cad', (req, res) => {
